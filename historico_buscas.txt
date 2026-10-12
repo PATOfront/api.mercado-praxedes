@@ -1,0 +1,33 @@
+[11/10/2026 às 23:00:48] Produto: CAMISAS
+Link de Acesso: https://lista.mercadolivre.com.br/camisas
+--------------------------------------------------
+[11/10/2026 às 23:03:22] Produto: CLS ; PYTHON -U "C:\USERS\PC\DESKTOP\API_MERCADO_LIVRE\API.MERCADOL.PY"
+Link de Acesso: https://lista.mercadolivre.com.br/cls-;-python--u-"c:\Users\PC\Desktop\api_mercado_livre\api.mercadol.py"
+--------------------------------------------------
+[11/10/2026 às 23:07:30] Produto: CLS ; PYTHON -U "C:\USERS\PC\DESKTOP\API_MERCADO_LIVRE\API.MERCADOL.PY"
+Link de Acesso: https://lista.mercadolivre.com.br/cls-;-python--u-"c:\Users\PC\Desktop\api_mercado_livre\api.mercadol.py"
+--------------------------------------------------
+[11/10/2026 às 23:08:34] Produto: CAMISAS
+Link de Acesso: https://lista.mercadolivre.com.br/Camisas
+--------------------------------------------------
+[11/10/2026 às 23:22:59] Produto: CLS ; PYTHON -U "C:\USERS\PC\DESKTOP\API_MERCADO_LIVRE\API.MERCADOL.PY"
+Link de Acesso: https://lista.mercadolivre.com.br/cls-;-python--u-"c:\Users\PC\Desktop\api_mercado_livre\api.mercadol.py"
+--------------------------------------------------
+[11/10/2026 às 23:23:19] Produto: CAMISAS
+Link de Acesso: https://lista.mercadolivre.com.br/Camisas
+--------------------------------------------------
+[11/10/2026 às 23:30:33] Produto: FONE
+Link: https://lista.mercadolivre.com.br/Fone
+--------------------------------------------------
+[11/10/2026 às 23:35:12] Produto: MEIAS
+Link: https://lista.mercadolivre.com.br/Meias
+--------------------------------------------------
+[11/10/2026 23:44:37] Loja: Amazon | Produto: CAMISAS | Teto: R$ 500.00
+Link: https://www.amazon.com.br/s?k=Camisas
+--------------------------------------------------
+[11/10/2026 23:44:49] Loja: Magalu | Produto: CAMISAS | Teto: R$ 500.00
+Link: https://www.magazineluiza.com.br/busca/Camisas/
+--------------------------------------------------
+[11/10/2026 23:45:01] Loja: Mercado Livre | Produto: CAMISAS | Teto: R$ 500.00
+Link: https://lista.mercadolivre.com.br/Camisas
+--------------------------------------------------
