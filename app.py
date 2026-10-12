@@ -13,14 +13,15 @@ st.set_page_config(
 # ========================================================
 # FUNÇÃO PARA SALVAR O HISTÓRICO DE BUSCAS DE FORMA SEGURA
 # ========================================================
-def salvar_historico(produto, preco, loja):
+def salvar_historico(produto, preco_min, preco_max, loja):
     try:
         data_hora = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
         
         novo_registro = {
             "Data/Hora": [data_hora],
             "Produto": [produto],
-            "Preço Limite (R$)": [preco],
+            "Preço Mín (R$)": [preco_min],
+            "Preço Máx (R$)": [preco_max],
             "Loja": [loja]
         }
         
@@ -35,7 +36,7 @@ def salvar_historico(produto, preco, loja):
     except Exception as e:
         print(f"Erro ao salvar histórico: {e}")
 
-# Estilização limpa e segura (sem conflitos de layout)
+# Estilização limpa e segura
 st.markdown("""
 <style>
     .hero-container {
@@ -66,25 +67,30 @@ st.markdown("""
 
 <div class="hero-container">
     <div class="hero-title">🔍 Busca Inteligente</div>
-    <div class="hero-subtitle">Escolha o produto que você deseja e escolha o valor que caiba no seu bolso, comparando os melhores do mercado digital num só lugar.</div>
+    <div class="hero-subtitle">Escolha o produto que você deseja, defina a sua faixa de preço ideal e compare os melhores produtos do mercado digital num só lugar.</div>
 </div>
 """, unsafe_allow_html=True)
 
-# Organização em 3 colunas (Produto, Preço e Seleção de Site)
-col1, col2, col3 = st.columns([2, 1, 1])
+# Organização em colunas para os filtros
+col1, col2, col3, col4 = st.columns([2, 1, 1, 1])
 
 with col1:
     termo_busca = st.text_input(
         "O que você está procurando?",
-        placeholder="Ex: Camisa, cafeteira, fone, smartphone...",
+        placeholder="Ex: Camisa, cafeteira, fone...",
     )
 
 with col2:
-    preco_maximo = st.number_input(
-        "Escolha um valor: (R$)", min_value=0.0, value=5000.0, step=100.0
+    preco_minimo = st.number_input(
+        "Preço Mín: (R$)", min_value=0.0, value=0.0, step=50.0
     )
 
 with col3:
+    preco_maximo = st.number_input(
+        "Preço Máx: (R$)", min_value=0.0, value=5000.0, step=100.0
+    )
+
+with col4:
     site_escolhido = st.selectbox(
         "Escolha a Loja:", ["Mercado Livre", "Amazon", "Magalu", "Shopee"]
     )
@@ -94,8 +100,8 @@ st.markdown("<br>", unsafe_allow_html=True)
 # Botão de Ação Principal
 if st.button("Buscar e Filtrar Produtos", use_container_width=True):
     if termo_busca.strip():
-        # Salva o histórico de forma automática e segura em segundo plano
-        salvar_historico(termo_busca, preco_maximo, site_escolhido)
+        # Salva o histórico corretamente com as variáveis de preço
+        salvar_historico(termo_busca, preco_minimo, preco_maximo, site_escolhido)
 
         with st.spinner(f"Gerando link otimizado para {site_escolhido}..."):
             termo_formatado = termo_busca.replace(" ", "-")
@@ -115,7 +121,7 @@ if st.button("Buscar e Filtrar Produtos", use_container_width=True):
         st.markdown(f"### Produto encontrado na {site_escolhido}")
         st.info(
             f"**Loja:** {site_escolhido} \n\n**Produto:** {termo_busca.title()}"
-            f" \n\n**Preço:** R$ {preco_maximo:,.2f}"
+            f" \n\n**Faixa de Preço:** R$ {preco_minimo:,.2f} até R$ {preco_maximo:,.2f}"
         )
         st.link_button(f"Acessar Resultados na {site_escolhido}", url_busca)
 
@@ -123,13 +129,13 @@ if st.button("Buscar e Filtrar Produtos", use_container_width=True):
         st.warning("Por favor, digite o nome do produto que você procura.")
 
 # ========================================================
-# PAINEL DE ADMIN DISCRETO NO RODAPÉ (SEM BUGS)
+# PAINEL DE ADMIN DISCRETO NO RODAPÉ
 # ========================================================
 st.markdown("<br>", unsafe_allow_html=True)
 
 with st.expander("⚙️ Administração"):
     senha_digitada = st.text_input("Digite a senha de administrador:", type="password", key="senha_admin")
-    SENHA_MESTRE = "admindev2026" # Podes alterar a senha aqui se quiseres
+    SENHA_MESTRE = "admin123"
     
     if senha_digitada == SENHA_MESTRE:
         st.success("Acesso autorizado!")
@@ -151,6 +157,9 @@ with st.expander("⚙️ Administração"):
             
     elif senha_digitada:
         st.error("Senha incorreta.")
+
+# Rodapé
+st.markdown("<br><hr style='border:0; border-top:1px solid #333;'><p style='text-align: center; color: #777; font-size: 13px;'>Desenvolvido por Vinicius | Versão teste!</p>", unsafe_allow_html=True)
 
 # Rodapé
 st.markdown("<br><hr style='border:0; border-top:1px solid #333;'><p style='text-align: center; color: #777; font-size: 13px;'>Desenvolvido por Vinicius | Versão teste!</p>", unsafe_allow_html=True)
