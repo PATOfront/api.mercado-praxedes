@@ -97,7 +97,7 @@ if st.button("Buscar e Filtrar Ofertas", use_container_width=True):
     st.link_button(f"Acessar Resultados na {site_escolhido} ", url_busca)
 
   else:
-    st.warning("Por favor, digite o nome de um produto.")
+    st.warning("Por favor, digite o nome do produto que você procura.")
 
 # Rodapé
 st.markdown(
