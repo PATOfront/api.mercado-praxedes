@@ -3,7 +3,7 @@ import streamlit as st
 
 # Configuração da Página
 st.set_page_config(
-    page_title="Busca Inteligente", 🛠️="", layout="wide"
+    page_title="Busca Inteligente", page_icon="🛠️", layout="wide"
 )
 
 
