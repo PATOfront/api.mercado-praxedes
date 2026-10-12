@@ -13,7 +13,7 @@ st.markdown(
 <style>
     /* Força o tamanho da letra em todos os textos principais e inputs no computador */
     .stApp p, .stApp span, .stApp label, .stTextInput input, .stNumberInput input, .stSelectbox div {
-        font-size: 50px !important;
+        font-size: 25px !important;
     }
     
     /* Mantém o botão com bom aspecto e tamanho legível em qualquer tela */
