@@ -87,7 +87,7 @@ with col2:
 
 with col3:
     preco_maximo = st.number_input(
-        "Preço Máx: (R$)", min_value=0.0, value=0.0, step=100.0
+        "Preço Máx: (R$)", min_value=0.0, value=5000.0, step=100.0
     )
 
 with col4:
@@ -120,7 +120,7 @@ if st.button("Buscar e Filtrar Produtos", use_container_width=True):
 
         st.markdown(f"### Produto encontrado na {site_escolhido}")
         
-        # Exibição corrigida e limpa sem falhas de caracteres
+        # Exibição corrigida com o cifrão separado corretamente
         st.info(
             f"**Loja:** {site_escolhido} \n\n"
             f"**Produto:** {termo_busca.title()} \n\n"
