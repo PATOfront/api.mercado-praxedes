@@ -77,19 +77,6 @@ if st.button("Buscar e Filtrar Ofertas", use_container_width=True):
 
       data_hora = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
 
-      # Salva no histórico
-      try:
-        with open("historico_buscas.txt", "a", encoding="utf-8") as arquivo:
-          arquivo.write(
-              f"[{data_hora}] Loja: {site_escolhido} | Produto:"
-              f" {termo_busca.upper()} | Teto: R$ {preco_maximo:,.2f}\nLink:"
-              f" {url_busca}\n"
-              + "-" * 50
-              + "\n"
-          )
-      except Exception:
-        pass
-
     st.success("Busca processada com sucesso!")
 
     st.markdown(f"###  Oferta Principal Encontrada na {site_escolhido}")
@@ -102,9 +89,6 @@ if st.button("Buscar e Filtrar Ofertas", use_container_width=True):
   else:
     st.warning("Por favor, digite o nome de um produto.")
 
-# Seção de Histórico Recente na Tela
-st.markdown("---")
-st.subheader("Histórico de Buscas Recentes")
 
 try:
   with open("historico_buscas.txt", "r", encoding="utf-8") as arquivo:
