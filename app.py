@@ -10,10 +10,10 @@ st.set_page_config(
 ## Estilo CSS para o Botão Azul
 st.markdown(
     """
-    <style>
-    /* Ajusta o tamanho base do texto para o computador não ficar miudinho */
-    html, body, [class*="st-"] {
-        font-size: 16px;
+<style>
+    /* Força o tamanho da letra em todos os textos principais e inputs no computador */
+    .stApp p, .stApp span, .stApp label, .stTextInput input, .stNumberInput input, .stSelectbox div {
+        font-size: 16px !important;
     }
     
     /* Mantém o botão com bom aspecto e tamanho legível em qualquer tela */
