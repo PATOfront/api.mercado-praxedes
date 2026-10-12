@@ -87,7 +87,7 @@ with col2:
 
 with col3:
     preco_maximo = st.number_input(
-        "Preço Máx: (R$)", min_value=0.0, value=5000.0, step=100.0
+        "Preço Máx: (R$)", min_value=0.0, value=0.0, step=100.0
     )
 
 with col4:
@@ -100,7 +100,7 @@ st.markdown("<br>", unsafe_allow_html=True)
 # Botão de Ação Principal
 if st.button("Buscar e Filtrar Produtos", use_container_width=True):
     if termo_busca.strip():
-        # Salva o histórico corretamente com as variáveis de preço
+        # Salva o histórico com segurança
         salvar_historico(termo_busca, preco_minimo, preco_maximo, site_escolhido)
 
         with st.spinner(f"Gerando link otimizado para {site_escolhido}..."):
@@ -119,9 +119,12 @@ if st.button("Buscar e Filtrar Produtos", use_container_width=True):
         st.success("Busca processada com sucesso!")
 
         st.markdown(f"### Produto encontrado na {site_escolhido}")
+        
+        # Exibição corrigida e limpa sem falhas de caracteres
         st.info(
-            f"**Loja:** {site_escolhido} \n\n**Produto:** {termo_busca.title()}"
-            f" \n\n**Faixa de Preço:** R$ {preco_minimo:,.2f} até R$ {preco_maximo:,.2f}"
+            f"**Loja:** {site_escolhido} \n\n"
+            f"**Produto:** {termo_busca.title()} \n\n"
+            f"**Faixa de Preço:** R$ {preco_minimo:,.2f} até R$ {preco_maximo:,.2f}"
         )
         st.link_button(f"Acessar Resultados na {site_escolhido}", url_busca)
 
@@ -157,9 +160,6 @@ with st.expander("⚙️ Administração"):
             
     elif senha_digitada:
         st.error("Senha incorreta.")
-
-# Rodapé
-st.markdown("<br><hr style='border:0; border-top:1px solid #333;'><p style='text-align: center; color: #777; font-size: 13px;'>Desenvolvido por Vinicius | Versão teste!</p>", unsafe_allow_html=True)
 
 # Rodapé
 st.markdown("<br><hr style='border:0; border-top:1px solid #333;'><p style='text-align: center; color: #777; font-size: 13px;'>Desenvolvido por Vinicius | Versão teste!</p>", unsafe_allow_html=True)
