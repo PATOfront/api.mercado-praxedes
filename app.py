@@ -67,7 +67,7 @@ with col2:
 
 with col3:
   site_escolhido = st.selectbox(
-      "Escolha a Loja:", ["Mercado Livre", "Amazon", "Magalu"]
+      "Escolha a Loja:", ["Mercado Livre", "Amazon", "Magalu", "Shopee"]
   )
 
 # Botão de Ação Principal
@@ -83,6 +83,8 @@ if st.button("Buscar e Filtrar Ofertas", use_container_width=True):
         url_busca = f"https://www.amazon.com.br/s?k={termo_busca.replace(' ', '+')}"
       elif site_escolhido == "Magalu":
         url_busca = f"https://www.magazineluiza.com.br/busca/{termo_formatado}/"
+      elif site_escolhido == "Shopee":
+        url_busca = f"https://shopee.com.br/search?keyword={termo_formatado}"
 
       data_hora = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
 
