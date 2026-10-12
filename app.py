@@ -7,39 +7,48 @@ st.set_page_config(
 )
 
 
-# Estilo CSS para o Botão Azul
+## Estilo CSS para o Botão Azul
 st.markdown(
     """
     <style>
+    /* Ajusta o tamanho base do texto para o computador não ficar miudinho */
+    html, body, [class*="st-"] {
+        font-size: 16px;
+    }
+    
+    /* Mantém o botão com bom aspecto e tamanho legível em qualquer tela */
     div.stButton > button:first-child {
         background-color: #0066cc;
         color: white;
         border-radius: 8px;
         border: none;
         font-weight: bold;
+        font-size: 16px;
+        padding: 0.6rem 1rem;
     }
     div.stButton > button:first-child:hover {
         background-color: #004d99;
         color: white;
     }
     </style>
-""",
+    """,
     unsafe_allow_html=True,
+
 )
 
-# Coloque esta parte onde você quiser que a imagem apareça
 try:
-
 # Coloque o nome do arquivo da imagem que está na sua pasta (ex: 'meme.png' ou 'avatar.jpg')
   st.image(
       "imagem_divertida.jpg",
       width=500,
-  )
+ )
+
 except Exception:
   pass
 st.title("Busca Inteligente")
 st.markdown(
     "Escolha o produto que você deseja e escolha o valor que caiba no seu bolso."
+
 )
 
 # Organização em 3 colunas (Produto, Preço e Seleção de Site)
@@ -77,6 +86,7 @@ if st.button("Buscar e Filtrar Ofertas", use_container_width=True):
 
       data_hora = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
 
+
     st.success("Busca processada com sucesso!")
 
     st.markdown(f"###  Oferta Principal Encontrada na {site_escolhido}")
@@ -88,7 +98,6 @@ if st.button("Buscar e Filtrar Ofertas", use_container_width=True):
 
   else:
     st.warning("Por favor, digite o nome de um produto.")
-
 
 # Rodapé
 st.markdown(
