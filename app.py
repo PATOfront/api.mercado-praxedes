@@ -90,18 +90,6 @@ if st.button("Buscar e Filtrar Ofertas", use_container_width=True):
     st.warning("Por favor, digite o nome de um produto.")
 
 
-try:
-  with open("historico_buscas.txt", "r", encoding="utf-8") as arquivo:
-    conteudo = arquivo.read()
-    if conteudo.strip():
-      st.text_area(
-          "Seus registros salvos:", conteudo, height=200, disabled=True
-      )
-    else:
-      st.info("Nenhuma busca realizada ainda.")
-except FileNotFoundError:
-  st.info("O histórico será exibido aqui assim que você fizer a primeira busca.")
-
 # Rodapé
 st.markdown(
     "<p style='text-align: center; color: gray;'>Desenvolvido por Vinicius |"
