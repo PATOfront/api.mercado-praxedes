@@ -67,7 +67,7 @@ st.markdown("""
 
 <div class="hero-container">
     <div class="hero-title">🔍 Busca Inteligente</div>
-    <div class="hero-subtitle">Escolha o produto que você deseja, defina a sua faixa de preço ideal e compare os melhores produtos do mercado digital num só lugar.</div>
+    <div class="hero-subtitle">Escolha o produto que você deseja e defina o valor.</div>
 </div>
 """, unsafe_allow_html=True)
 
@@ -120,14 +120,15 @@ if st.button("Buscar e Filtrar Produtos", use_container_width=True):
 
         st.markdown(f"### Produto encontrado na {site_escolhido}")
         
-        # Formatação limpa e isolada para evitar erros com o cifrão
-        val_min_str = f"{preco_minimo:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
-        val_max_str = f"{preco_maximo:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
+        # Formatação dos valores numéricos invertendo pontos e vírgulas para o padrão BR
+        min_str = f"{preco_minimo:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
+        max_str = f"{preco_maximo:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
         
+        # O uso de R\$ impede que o Streamlit confunda o cifrão com marcação matemática
         st.info(
             f"**Loja:** {site_escolhido} \n\n"
             f"**Produto:** {termo_busca.title()} \n\n"
-            f"**Faixa de Preço:** R$ {val_min_str} até R$ {val_max_str}"
+            f"**Faixa de Preço:** R\$ {min_str} até R\$ {max_str}"
         )
         st.link_button(f"Acessar Resultados na {site_escolhido}", url_busca)
 
