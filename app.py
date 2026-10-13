@@ -67,7 +67,7 @@ st.markdown("""
 
 <div class="hero-container">
     <div class="hero-title">🔍 Busca Inteligente</div>
-    <div class="hero-subtitle">Escolha o produto e defina o valor.</div>
+    <div class="hero-subtitle">Escolha o produto que você deseja, defina a sua faixa de preço ideal e compare os melhores produtos do mercado digital num só lugar.</div>
 </div>
 """, unsafe_allow_html=True)
 
@@ -118,13 +118,12 @@ if st.button("Buscar e Filtrar Produtos", use_container_width=True):
 
         st.success("Busca processada com sucesso!")
 
-        st.markdown(f"### Produto encontrado {site_escolhido}")
+        st.markdown(f"### Produto encontrado na {site_escolhido}")
         
         # Formatação dos valores numéricos invertendo pontos e vírgulas para o padrão BR
         min_str = f"{preco_minimo:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
         max_str = f"{preco_maximo:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
         
-        # O uso de R\$ impede que o Streamlit confunda o cifrão com marcação matemática
         st.info(
             f"**Loja:** {site_escolhido} \n\n"
             f"**Produto:** {termo_busca.title()} \n\n"
@@ -142,23 +141,38 @@ st.markdown("<br>", unsafe_allow_html=True)
 
 with st.expander("⚙️ Administração"):
     senha_digitada = st.text_input("Digite a senha de administrador:", type="password", key="senha_admin")
-    SENHA_MESTRE = "admintestedevjunior"
+    SENHA_MESTRE = "admindevjuniorteste"
     
     if senha_digitada == SENHA_MESTRE:
         st.success("Acesso autorizado!")
         arquivo_historico = "historico_buscas.csv"
         
         if os.path.exists(arquivo_historico):
-            df_historico = pd.read_csv(arquivo_historico)
-            st.metric("Total de Buscas Realizadas", len(df_historico))
-            st.dataframe(df_historico, use_container_width=True)
-            
-            st.download_button(
-                label="📥 Baixar Histórico em CSV",
-                data=df_historico.to_csv(index=False).encode('utf-8-sig'),
-                file_name="historico_buscas.csv",
-                mime="text/csv"
-            )
+            try:
+                # Tratamento seguro para evitar ParserError caso o CSV esteja corrompido/antigo
+                df_historico = pd.read_csv(arquivo_historico)
+                
+                # Se faltarem as colunas novas, recria o arquivo limpo para evitar conflitos
+                colunas_esperadas = ["Data/Hora", "Produto", "Preço Mín (R$)", "Preço Máx (R$)", "Loja"]
+                if not all(col in df_historico.columns for col in colunas_esperadas):
+                    st.warning("O histórico antigo foi detetado e reiniciado para se adaptar à nova versão.")
+                    os.remove(arquivo_historico)
+                    df_historico = pd.DataFrame(columns=colunas_esperadas)
+                
+                st.metric("Total de Buscas Realizadas", len(df_historico))
+                st.dataframe(df_historico, use_container_width=True)
+                
+                if not df_historico.empty:
+                    st.download_button(
+                        label="📥 Baixar Histórico em CSV",
+                        data=df_historico.to_csv(index=False).encode('utf-8-sig'),
+                        file_name="historico_buscas.csv",
+                        mime="text/csv"
+                    )
+            except Exception:
+                # Caso ocorra qualquer erro de leitura, limpa o arquivo corrompido automaticamente
+                os.remove(arquivo_historico)
+                st.info("O ficheiro de histórico foi limpo devido a uma incompatibilidade de formato. Podes voltar a pesquisar normalmente!")
         else:
             st.info("Ainda não existem registos de busca.")
             
