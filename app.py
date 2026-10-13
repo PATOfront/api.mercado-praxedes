@@ -87,7 +87,7 @@ with col2:
 
 with col3:
     preco_maximo = st.number_input(
-        "Preço Máx: (R$)", min_value=0.0, value=5000.0, step=100.0
+        "Preço Máx: (R$)", min_value=0.0, value=0.0, step=100.0
     )
 
 with col4:
@@ -120,11 +120,14 @@ if st.button("Buscar e Filtrar Produtos", use_container_width=True):
 
         st.markdown(f"### Produto encontrado na {site_escolhido}")
         
-        # Exibição corrigida com o cifrão separado corretamente
+        # Formatação limpa e isolada para evitar erros com o cifrão
+        val_min_str = f"{preco_minimo:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
+        val_max_str = f"{preco_maximo:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
+        
         st.info(
             f"**Loja:** {site_escolhido} \n\n"
             f"**Produto:** {termo_busca.title()} \n\n"
-            f"**Faixa de Preço:** R$ {preco_minimo:,.2f} até R$ {preco_maximo:,.2f}"
+            f"**Faixa de Preço:** R$ {val_min_str} até R$ {val_max_str}"
         )
         st.link_button(f"Acessar Resultados na {site_escolhido}", url_busca)
 
