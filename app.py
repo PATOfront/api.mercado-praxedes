@@ -142,7 +142,7 @@ st.markdown("<br>", unsafe_allow_html=True)
 
 with st.expander("⚙️ Administração"):
     senha_digitada = st.text_input("Digite a senha de administrador:", type="password", key="senha_admin")
-    SENHA_MESTRE = "admin123"
+    SENHA_MESTRE = "admintestedevjunior"
     
     if senha_digitada == SENHA_MESTRE:
         st.success("Acesso autorizado!")
