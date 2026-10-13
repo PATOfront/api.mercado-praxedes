@@ -67,7 +67,7 @@ st.markdown("""
 
 <div class="hero-container">
     <div class="hero-title">🔍 Busca Inteligente</div>
-    <div class="hero-subtitle">Escolha o produto que você deseja e defina o valor.</div>
+    <div class="hero-subtitle">Escolha o produto e defina o valor.</div>
 </div>
 """, unsafe_allow_html=True)
 
@@ -118,7 +118,7 @@ if st.button("Buscar e Filtrar Produtos", use_container_width=True):
 
         st.success("Busca processada com sucesso!")
 
-        st.markdown(f"### Produto encontrado na {site_escolhido}")
+        st.markdown(f"### Produto encontrado {site_escolhido}")
         
         # Formatação dos valores numéricos invertendo pontos e vírgulas para o padrão BR
         min_str = f"{preco_minimo:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
